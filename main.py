@@ -1,7 +1,7 @@
 from PIL import Image
-
 infile1 = 'Got_order.png'
 infile2 = 'Empty_order.png'
+pix_coord = (114, 231)
 
 
 def compare_pixels(image1, image2, pixel_coordinates=(114, 231)):
@@ -15,4 +15,4 @@ def compare_pixels(image1, image2, pixel_coordinates=(114, 231)):
     return pix1[pixel_coordinates] == pix2[pixel_coordinates]
 
 
-print(compare_pixels(infile1, infile2))
+print(compare_pixels(infile1, infile2, pixel_coordinates=pix_coord))
