@@ -7,10 +7,10 @@ infile2 = 'Empty_order.png'
 pix_coord = (114, 231)
 
 
-def compare_pixels(image1, image2, pixel_coordinates=(114, 231)):
-
-    """image1, 2 - input opened images
-        *pixel_coordinates - Tuple of  x, y comparing images """
+def compare_pixels(image1, image2, pixel_coordinates):
+    """image1, 2 - input images to compare
+        *pixel_coordinates - tuple of  x, y pixels coordinates to compare
+        returns False if images are different"""
     with Image.open(image1) as img1:
         with Image.open(image2) as img2:
             pix1 = img1.load()
@@ -19,6 +19,8 @@ def compare_pixels(image1, image2, pixel_coordinates=(114, 231)):
 
 
 def take_screenshot():
+    """Save screenshot into current directory and
+    returns str object of it name consists current date %H:%M:%S"""
     screenshot = pyautogui.screenshot()
     timestamp = datetime.datetime.now().strftime('%H:%M:%S')
     screenshot.save(timestamp + '.png')
