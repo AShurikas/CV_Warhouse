@@ -42,10 +42,7 @@ def take_screenshot():
     by coord area and save it in current directory by '%H%M' date format name"""
     filename = str(datetime.datetime.now().strftime('%H%M')) + '.png'
     screen = np.array(ImageGrab.grab(bbox=(185, 145, 293, 155)))
-    cv2.imshow('window', cv2.cvtColor(screen, cv2.COLOR_BGR2RGB))
-    cv2.imwrite(filename, screen)
-    img = cv2.imread(filename)
-    return img
+    return screen
 
 
 def recognition_text():
@@ -55,6 +52,6 @@ def recognition_text():
 
 
 if recognition_text() is not None:
-    print(recognition_text())
+    pass
 else:
-    print('Hello')
+    pass
