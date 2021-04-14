@@ -1,8 +1,11 @@
 import pyautogui
-import datetime
 import pytesseract
 import pyscreenshot as ImageGrab
 import numpy as np
+from telegram import Update
+from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext
+import requests
+from Tele_API import API_Token as API
 
 
 infile1 = 'Got_order.png'
@@ -27,8 +30,7 @@ def move_mouse(coord):
 
 def take_screenshot():
     """Returns img object of screenshot
-    by coord area and save it in current directory by '%H%M' date format name"""
-    filename = str(datetime.datetime.now().strftime('%H%M')) + '.png'
+    by coord area"""
     screen = np.array(ImageGrab.grab(bbox=(185, 145, 293, 155)))
     return screen
 
