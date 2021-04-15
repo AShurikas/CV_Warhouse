@@ -1,15 +1,22 @@
+import time
 import pyautogui
 import pytesseract
 import pyscreenshot as ImageGrab
 import numpy as np
-from telegram import Update
-from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext
 import requests
-from Tele_API import API_Token as API
+from Tele_API import API_Token
+
+
+string_coord = (336, 206)
+print_coord = (372, 143)
 
 
 def click_left():
     pyautogui.leftClick()
+
+
+def double_click():
+    pyautogui.doubleClick()
 
 
 def click_right():
@@ -33,33 +40,30 @@ def recognition_text():
         return text.strip()
 
 
-if recognition_text() is not None:
-    pass
-else:
-    pass
+def send_telegram(text: str):
+    token = API_Token
+    url = "https://api.telegram.org/bot"
+    channel_id = "-513639392"
+    url += token
+    method = url + "/sendMessage"
+
+    r = requests.post(method, data={
+         "chat_id": channel_id,
+         "text": text
+          })
+
+    if r.status_code != 200:
+        raise Exception("post_text error")
 
 
-#TODO TELEGRAM BOT!!!!!
+while True:
+    if recognition_text() is not None:
+        send_telegram(recognition_text())
+        move_mouse(string_coord)
+        double_click()
+        move_mouse(print_coord)
+        click_left()
+        time.sleep(20)
 
-def start(update: Update, context: CallbackContext) -> None:
-    """Send a message when the command /start is issued."""
-    update.message.reply_text(f'Hello {update.effective_user.first_name}')
-
-
-def help_command(update: Update, context: CallbackContext) -> None:
-    """Send a message when the command /help is issued."""
-    update.message.reply_text(open('README.md', 'r', encoding='utf-8').read())
-
-
-def run_bot(update: Update, context: CallbackContext) -> None:
-    update.message.reply_text(response)
-
-
-def main():
-    """Start the bot."""
-    updater = Updater(API, use_context=True)
-    dispatcher = updater.dispatcher
-    dispatcher.add_handler(CommandHandler("start", start))
-    dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, run_bot))
-    updater.start_polling()
-    updater.idle()
+    else:
+        pass
