@@ -8,7 +8,7 @@ venv
 build
 .idea
 Empty_screen.png
-Tele_API.py
+config.py
 Got_order.png
 __pycache__/
 tessdata

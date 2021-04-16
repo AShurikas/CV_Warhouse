@@ -4,11 +4,13 @@ import pytesseract
 import pyscreenshot as ImageGrab
 import numpy as np
 import requests
-from Tele_API import API_Token
+from config import API_Token
+from config import channel_id
 
 
 string_coord = (336, 206)
 print_coord = (372, 143)
+recognition_area = (185, 145, 293, 155)
 
 
 def click_left():
@@ -30,7 +32,7 @@ def move_mouse(coord):
 def take_screenshot():
     """Returns img object of screenshot
     by coord area"""
-    screen = np.array(ImageGrab.grab(bbox=(185, 145, 293, 155)))
+    screen = np.array(ImageGrab.grab(bbox=recognition_area))
     return screen
 
 
@@ -43,7 +45,6 @@ def recognition_text():
 def send_telegram(text: str):
     token = API_Token
     url = "https://api.telegram.org/bot"
-    channel_id = "-513639392"
     url += token
     method = url + "/sendMessage"
 
@@ -58,12 +59,13 @@ def send_telegram(text: str):
 
 while True:
     if recognition_text() is not None:
+        time.sleep(5)
         send_telegram(recognition_text())
         move_mouse(string_coord)
         double_click()
         move_mouse(print_coord)
         click_left()
-        time.sleep(20)
+        time.sleep(10)
 
     else:
         pass
