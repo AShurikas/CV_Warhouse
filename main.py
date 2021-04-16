@@ -11,6 +11,7 @@ from config import channel_id
 string_coord = (336, 206)
 print_coord = (372, 143)
 recognition_area = (185, 145, 293, 155)
+recognition_lang = 'rus'
 
 
 def click_left():
@@ -37,7 +38,7 @@ def take_screenshot():
 
 
 def recognition_text():
-    text = pytesseract.image_to_string(take_screenshot(), lang='rus')
+    text = pytesseract.image_to_string(take_screenshot(), lang=recognition_lang)
     if text.strip():
         return text.strip()
 
