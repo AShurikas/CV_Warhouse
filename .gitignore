@@ -12,3 +12,4 @@ config.py
 Got_order.png
 __pycache__/
 tessdata
+orders.sql

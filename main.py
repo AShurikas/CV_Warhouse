@@ -4,14 +4,7 @@ import pytesseract
 import pyscreenshot as ImageGrab
 import numpy as np
 import requests
-from config import API_Token
-from config import channel_id
-
-
-string_coord = (336, 206)
-print_coord = (372, 143)
-recognition_area = (185, 145, 293, 155)
-recognition_lang = 'rus'
+from config import *
 
 
 def click_left():
