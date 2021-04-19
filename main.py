@@ -51,15 +51,39 @@ def send_telegram(text: str):
         raise Exception("post_text error")
 
 
-while True:
-    if recognition_text() is not None:
-        time.sleep(5)
-        send_telegram(recognition_text())
-        move_mouse(string_coord)
-        double_click()
-        move_mouse(print_coord)
-        click_left()
-        time.sleep(10)
+def start(telegram=True, mouse_move=True, delay=5):
+    while True:
+        if telegram and mouse_move:
+            if recognition_text() is not None:
+                time.sleep(delay)
+                send_telegram(recognition_text())
+                move_mouse(string_coord)
+                double_click()
+                move_mouse(print_coord)
+                click_left()
+                time.sleep(delay)
 
-    else:
-        pass
+            else:
+                pass
+        elif telegram and not mouse_move:
+            if recognition_text() is not None:
+                time.sleep(delay)
+                send_telegram(recognition_text())
+                time.sleep(delay)
+
+            else:
+                pass
+        elif not telegram and mouse_move:
+            if recognition_text() is not None:
+                time.sleep(delay)
+                move_mouse(string_coord)
+                double_click()
+                move_mouse(print_coord)
+                click_left()
+                time.sleep(delay)
+
+            else:
+                pass
+
+
+start()

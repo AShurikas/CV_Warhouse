@@ -1,4 +1,4 @@
-Cursor_coordinates.py
+recognition_area_config.py
 main.spec
 Red_point.png
 test.py
@@ -13,3 +13,11 @@ Got_order.png
 __pycache__/
 tessdata
 orders.sql
+detect_area.py
+string_coord_config.py
+recognition_area.py
+string_coord.py
+print_coord_config.py
+print_coord.py
+config_main.py
+config_main_config.py
