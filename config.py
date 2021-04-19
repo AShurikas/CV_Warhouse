@@ -8,8 +8,14 @@ class Configs:
         self.recognition_area = recognition_area
         self.recognition_lang = recognition_lang
 
-
     def set_API(self):
+        self.API_Token = input('Input the Telegram Token, you register ---->>>>>')
+
+    def set_channel_id(self):
+        self.channel_id = input('Input the cahnnel_id of recepient ------>>>>>>')
+
+    def set_string_coord(self):
+
 
 
 
