@@ -22,3 +22,4 @@ config_main.py
 config_main_config.py
 config_old.py
 config_settings.py
+config_shadow.py
