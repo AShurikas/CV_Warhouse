@@ -8,7 +8,6 @@ venv
 build
 .idea
 Empty_screen.png
-config.py
 Got_order.png
 __pycache__/
 tessdata
@@ -21,3 +20,5 @@ print_coord_config.py
 print_coord.py
 config_main.py
 config_main_config.py
+config_old.py
+config_settings.py
