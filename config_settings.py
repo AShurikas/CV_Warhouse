@@ -16,7 +16,6 @@ class Configs:
     def set_API(self):
         self.API_Token = input('Input the Telegram Token, you register ---->>>>>')
 
-
     def set_channel_id(self):
         self.channel_id = input('Input the cahnnel_id of recepient ------>>>>>>')
 

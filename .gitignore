@@ -8,4 +8,4 @@ tessdata
 orders.sql
 config.py
 config_test.py
-configs/
+configs/set_config
