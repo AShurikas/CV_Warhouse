@@ -4,7 +4,7 @@ import pytesseract
 import pyscreenshot as ImageGrab
 import numpy as np
 import requests
-from config import *
+from config import config_data
 
 
 def click_left():
@@ -26,24 +26,24 @@ def move_mouse(coord):
 def take_screenshot():
     """Returns img object of screenshot
     by coord area"""
-    screen = np.array(ImageGrab.grab(bbox=recognition_area))
+    screen = np.array(ImageGrab.grab(bbox=tuple(config_data["recognition_area"])))
     return screen
 
 
 def recognition_text():
-    text = pytesseract.image_to_string(take_screenshot(), lang=recognition_lang)
+    text = pytesseract.image_to_string(take_screenshot(), lang=config_data['recognition_lang'])
     if text.strip():
         return text.strip()
 
 
 def send_telegram(text: str):
-    token = API_Token
+    token = config_data['API_Token']
     url = "https://api.telegram.org/bot"
     url += token
     method = url + "/sendMessage"
 
     r = requests.post(method, data={
-         "chat_id": channel_id,
+         "chat_id": config_data['channel_id'],
          "text": text
           })
 
@@ -57,9 +57,9 @@ def start(telegram=True, mouse_move=True, delay=5):
             if recognition_text() is not None:
                 time.sleep(delay)
                 send_telegram(recognition_text())
-                move_mouse(string_coord)
+                move_mouse(tuple(config_data['string_coord']))
                 double_click()
-                move_mouse(print_coord)
+                move_mouse(tuple(config_data['print_coord']))
                 click_left()
                 time.sleep(delay)
 
@@ -76,9 +76,9 @@ def start(telegram=True, mouse_move=True, delay=5):
         elif not telegram and mouse_move:
             if recognition_text() is not None:
                 time.sleep(delay)
-                move_mouse(string_coord)
+                move_mouse(tuple(config_data['string_coord']))
                 double_click()
-                move_mouse(print_coord)
+                move_mouse(tuple(config_data['print_coord']))
                 click_left()
                 time.sleep(delay)
 
@@ -86,4 +86,3 @@ def start(telegram=True, mouse_move=True, delay=5):
                 pass
 
 
-start()
