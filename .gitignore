@@ -6,6 +6,7 @@ build
 __pycache__/
 tessdata
 orders.sql
-config.py
 config_test.py
-configs/set_config
+config
+config_test
+
