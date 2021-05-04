@@ -4,6 +4,7 @@ import pytesseract
 import pyscreenshot as ImageGrab
 import numpy as np
 import requests
+import cv2
 from config import config_data
 
 
@@ -31,7 +32,10 @@ def take_screenshot():
 
 
 def recognition_text():
-    text = pytesseract.image_to_string(take_screenshot(), lang=config_data['recognition_lang'])
+    input_image = take_screenshot()
+    grey_image = cv2.cvtColor(input_image, cv2.COLOR_BGR2GRAY)
+    thresh = cv2.threshold(grey_image, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)[1]
+    text = pytesseract.image_to_string(grey_image, lang=config_data['recognition_lang'])
     if text.strip():
         return text.strip()
 
