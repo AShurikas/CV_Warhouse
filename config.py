@@ -1,1 +1,1 @@
-config_data = {"API_Token": "1234", "channel_id": "1234", "string_coord": [557, 244], "print_coord": [247, 230], "recognition_area": [224, 176, 565, 232], "recognition_lang": "rus"}
+config_data = {"API_Token": "123", "channel_id": "345", "string_coord": [557, 244], "print_coord": [247, 230], "recognition_area": [184, 142, 292, 153], "recognition_lang": "rus"}

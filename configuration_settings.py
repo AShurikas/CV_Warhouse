@@ -8,6 +8,7 @@ from config import config_data
 class set_configs(clientui.Ui_MainWindow):
     def __init__(self):
         super().__init__()
+        self.setWindowFlags(QtCore.Qt.WindowFlags.WindowStaysOnTopHint)
         self.setupUi(self)
         self.pushButton_2.pressed.connect(self.save_config)
         self.pushButton.pressed.connect(self.set_recognition_area)
