@@ -11,3 +11,4 @@ config
 config_test
 config.py
 ORDERS_BASTION.zip
+img_filters.py
