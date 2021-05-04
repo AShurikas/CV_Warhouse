@@ -1,1 +1,0 @@
-config_data = {"API_Token": "123", "channel_id": "345", "string_coord": [557, 244], "print_coord": [247, 230], "recognition_area": [184, 142, 292, 153], "recognition_lang": "rus"}
