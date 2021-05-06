@@ -36,8 +36,7 @@ def recognition_text():
     grey_image = cv2.cvtColor(input_image, cv2.COLOR_BGR2GRAY)
     thresh = cv2.threshold(grey_image, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)[1]
     text = pytesseract.image_to_string(grey_image, lang=config_data['recognition_lang'])
-    if text.strip():
-        return text.strip()
+    return text.strip()
 
 
 def send_telegram(text: str):
@@ -58,7 +57,7 @@ def send_telegram(text: str):
 def start(telegram=True, mouse_move=True, delay=5):
     while True:
         if telegram and mouse_move:
-            if recognition_text() is not None:
+            if isinstance(recognition_text(), str) and len(recognition_text() > 0):
                 time.sleep(delay)
                 send_telegram(recognition_text())
                 move_mouse(tuple(config_data['string_coord']))
@@ -70,7 +69,7 @@ def start(telegram=True, mouse_move=True, delay=5):
             else:
                 pass
         elif telegram and not mouse_move:
-            if recognition_text() is not None:
+            if isinstance(recognition_text(), str) and len(recognition_text() > 0):
                 time.sleep(delay)
                 send_telegram(recognition_text())
                 time.sleep(delay)
@@ -78,7 +77,7 @@ def start(telegram=True, mouse_move=True, delay=5):
             else:
                 pass
         elif not telegram and mouse_move:
-            if recognition_text() is not None:
+            if isinstance(recognition_text(), str) and len(recognition_text() > 0):
                 time.sleep(delay)
                 move_mouse(tuple(config_data['string_coord']))
                 double_click()
@@ -90,3 +89,5 @@ def start(telegram=True, mouse_move=True, delay=5):
                 pass
 
 
+time.sleep(5)
+start()
