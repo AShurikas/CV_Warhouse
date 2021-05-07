@@ -55,38 +55,36 @@ def send_telegram(text: str):
 
 
 def start(telegram=True, mouse_move=True, delay=5):
-    while True:
-        if telegram and mouse_move:
-            if isinstance(recognition_text(), str) and len(recognition_text() > 0):
+    if telegram and mouse_move:
+        while True:
+            text = recognition_text()
+            if text and isinstance(text, str) and (len(text) > 0):
                 time.sleep(delay)
-                send_telegram(recognition_text())
+                send_telegram(text)
                 move_mouse(tuple(config_data['string_coord']))
                 double_click()
                 move_mouse(tuple(config_data['print_coord']))
                 click_left()
                 time.sleep(delay)
 
-            else:
-                pass
-        elif telegram and not mouse_move:
-            if isinstance(recognition_text(), str) and len(recognition_text() > 0):
+    elif telegram and not mouse_move:
+        while True:
+            text = recognition_text()
+            if text and isinstance(text, str) and (len(text) > 0):
                 time.sleep(delay)
-                send_telegram(recognition_text())
+                send_telegram(text)
                 time.sleep(delay)
 
-            else:
-                pass
-        elif not telegram and mouse_move:
-            if isinstance(recognition_text(), str) and len(recognition_text() > 0):
+    elif not telegram and mouse_move:
+        while True:
+            text = recognition_text()
+            if text and isinstance(text, str) and len(text > 0):
                 time.sleep(delay)
                 move_mouse(tuple(config_data['string_coord']))
                 double_click()
                 move_mouse(tuple(config_data['print_coord']))
                 click_left()
                 time.sleep(delay)
-
-            else:
-                pass
 
 
 time.sleep(5)
